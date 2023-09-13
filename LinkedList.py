@@ -6,7 +6,10 @@ class LinkedList:
     self.head = Node(head_value)
 
   def __repr__(self):
-    return f'<LinkedList: {self.head.value}>'
+    #  output = ""
+    #  for node in self:
+    #     output += f"{node.value} -> "
+     return f'<LinkedList: {" -> ".join(node.value for node in self)}>'
   
   def __iter__(self):
     current_node = self.head
@@ -48,15 +51,13 @@ class LinkedList:
       
 
   def remove(self, value):
-        # if self.head and self.head.value == value:
-        #   self.head = self.head.right
-        #   return
-        
-        for node in self:
-          if node.right and node.right.value == value:
-            node.right = node.right.right
+        if self.head.value == value:
+            self.head = self.head.right
             return
-
+        for node in self:
+            if node.right and node.right.value == value:
+                node.right = node.right.right
+                return  
 linkedlist = LinkedList('Monday')
 
 linkedlist.append_node('Tuesday')
